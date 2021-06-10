@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:shiro="https://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>首页</h1>
+
+<p th:text="${msg}"></p>
+
+<hr>
+<!--  th:if = "${Boolean表达式}}"  如果成立则显示，否则不显示 -->
+<!--session域可以在前端直接访问-->
+<div th:if="${session.loginUser==null}">
+  <a th:href="@{/toLogin}">登陆</a>
+</div>
+
+<!--  shiro:hasPermission = "权限名"   该标签表示如果当前用户有该权限则显示-->
+<div shiro:hasPermission="user:add">
+  <a th:href="@{/user/add}">add</a>
+</div>
+
+<div shiro:hasPermission="user:update">
+  <a th:href="@{/user/update}">update</a>
+</div>
+
+</body>
+</html>
